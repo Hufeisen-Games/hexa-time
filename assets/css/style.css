@@ -1,0 +1,49 @@
+body {
+    font: 20px Helvetica, sans-serif;
+    color: rgb(115, 202, 223);
+}
+
+a {
+    display: inline;
+    color: aqua;
+    text-decoration: none;
+    transition: transform .2s;
+}
+
+#clock-holder {
+    transition: transform .2s;
+}
+
+#clock-holder:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.5); 
+}
+
+#clock-panel {
+    align-self: center;
+    margin: auto;
+    margin-top: 28%;
+    width: 20%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 0.2%;
+    padding-bottom: 0.2%;
+    text-align: center;
+    background-color: rgb(62 62 62 / 85%);
+    border-radius: 5%;
+}
+
+.clock-time {
+    display: inline;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -9999;
+}

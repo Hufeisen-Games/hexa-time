@@ -1,0 +1,91 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <title>Hexa Time by Hufeisen Games</title>
+        <meta name="description" content="Hexa Time - Show the time in hexadecimal!">
+        <meta name="author" content="Hufeisen Games: Hufeisen">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="/assets/favicon.ico">
+        <link rel="stylesheet" href="/assets/css/style.css">
+    </head>
+
+    <body>
+        <div id="clock-panel">
+            <h1>It is</h1>
+            <div id="clock-holder">
+                <p class="clock-time" id="clock-hour">00</p><p class="clock-time seperator">:</p><p class="clock-time" id="clock-minutes">00</p><p class="clock-time seperator">:</p><p class="clock-time" id="clock-seconds">00</p>
+            </div>
+            <h3>o'clock!</h3>
+            <br>
+            <p class="disclamer">You are free to use this code in any way you like.</p>
+            <p class="disclamer">Ckeck out the source code on <a href="https://github.com/Hufeisen-Games/hexa-time">Github</a>!</p>
+        </div>
+        <canvas id=bg></canvas>
+    </body>
+    <footer>
+        <script>
+            setInterval(changeTime, 1000)
+
+            function changeTime() {
+                //Get Current Date
+                let date = new Date()
+
+                //Transform Time into Hex and set the conten of the elements
+                document.getElementById("clock-hour").textContent = intToHex(date.getHours());
+
+                document.getElementById("clock-minutes").textContent = intToHex(date.getMinutes());
+
+                document.getElementById("clock-seconds").textContent = intToHex(date.getSeconds());
+            }
+
+            //Get Hex from number
+            function intToHex(int) {
+                //Check if int isn't 0, else it will return 00
+                if(int != 0) {
+                    let lastResult = int
+                    let hexList = [];
+                    let hex = ""
+
+                    //Enumerate until the result is 0
+                    while(lastResult!=0) {
+
+                        //Calculate the rest
+                        let inHex = lastResult%16
+
+                        //Set lastResult to new Result
+                        lastResult = parseInt(lastResult/16)
+
+                        //Replace 10-15 with A-F
+                        inHex = inHex.toString().replace(10, "A")
+                        inHex = inHex.toString().replace(11, "B")
+                        inHex = inHex.toString().replace(12, "C")
+                        inHex = inHex.toString().replace(13, "D")
+                        inHex = inHex.toString().replace(14, "E")
+                        inHex = inHex.toString().replace(15, "F")
+
+                        //Add Symbole to hexList
+                        hexList.push(inHex)
+                    }
+
+                    //Add 0 when the text is 1 (p.e. 5 -> 05)
+                    if(hexList.length == 1) {
+                        hexList.push("0");
+                    }
+
+                    //Add the last entrys before the first
+                    for (let i = hexList.length-1; i >= 0; i--) {
+                        hex+=hexList[i]
+                    }
+
+                    //Return the Result
+                    return hex
+                } else {
+                    return "00";
+                }
+            }
+        </script>
+        <script src="/assets/js/bg.js"></script>
+    </footer>
+</html>
